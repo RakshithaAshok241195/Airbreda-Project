@@ -1,0 +1,67 @@
+{
+  "chosen_candidate": "traffic_only",
+  "description": "Linear: NO2 ~ traffic",
+  "inputs": [
+    "total_intensity_veh_per_hr",
+    "hour_of_day"
+  ],
+  "target": "no2_ug_m3",
+  "trained_at": "2026-10-01T15:12:05Z",
+  "training_rows": 6,
+  "training_period_utc": [
+    "2026-10-01T01:00:00Z",
+    "2026-10-01T13:00:00Z"
+  ],
+  "coefficients": {
+    "intercept": 12.949815576677544,
+    "total_intensity_veh_per_hr": 0.0021534614838984245
+  },
+  "metrics": {
+    "in_sample": {
+      "r2": 0.2734730370612857,
+      "mae": 4.92755899181917
+    },
+    "held_out": {
+      "method": "leave-one-out cross-validation (n=6 < 20)",
+      "mae": 9.660180560613187,
+      "r2": -1.9481573322319194,
+      "baseline_mae": 6.739999999999998
+    },
+    "beats_baseline": false
+  },
+  "all_candidates": {
+    "traffic_only": {
+      "held_out_mae": 9.660180560613187,
+      "held_out_r2": -1.9481573322319194
+    },
+    "course": {
+      "held_out_mae": 11.284155129070896,
+      "held_out_r2": -3.400329626265261
+    },
+    "traffic_rush_hour": {
+      "held_out_mae": 9.660180560613187,
+      "held_out_r2": -1.9481573322319194
+    },
+    "ridge": {
+      "held_out_mae": 11.430744220757271,
+      "held_out_r2": -3.566751228717827
+    }
+  },
+  "serving": {
+    "predictions_clipped_at": 0
+  },
+  "versions": {
+    "python": "3.12.7",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "joblib": "1.6.0"
+  },
+  "limitations": [
+    "only 6 training rows; not production-grade",
+    "candidate ranking is itself noisy at this size; re-run with more data",
+    "one 1-minute traffic snapshot per hour",
+    "traffic and time of day are correlated; effects can't be separated yet",
+    "no weather features (wind, temperature), which strongly drive NO2"
+  ]
+}

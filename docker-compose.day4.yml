@@ -1,0 +1,46 @@
+# Own project name: the Day 2 docker-compose.yml in this folder is project "airbreda".
+# Without this, Compose treats that stack's running redis as an "orphan" of this file,
+# and --remove-orphans would delete it.
+name: airbreda-day4
+
+# Day 4 local test: the course's three services, against the REAL RDS + S3 (.env).
+#
+#   aws configure export-credentials --format powershell | Invoke-Expression
+#   docker compose -f docker-compose.day4.yml up --build                  # dashboard only
+#   docker compose -f docker-compose.day4.yml --profile ingest up --build # all three
+#   -> http://localhost:8000
+#
+# The two ingestion services sit behind the "ingest" profile because this laptop
+# already runs them (docker-compose.yml, Day 2): starting them twice would mean two
+# collectors. A separate file keeps that running stack untouched.
+#
+# On the VM nothing here is used: the dashboard runs as a plain container
+# (docker run --restart unless-stopped) and gets AWS access from the IAM role.
+services:
+  air-ingest:
+    profiles: ["ingest"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+
+  traffic-ingest:
+    profiles: ["ingest"]
+    build:
+      context: .
+      dockerfile: Dockerfile.traffic
+    env_file: .env
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    env_file: .env
+    environment:
+      # The laptop's AWS session, passed through from the terminal (never written to a file)
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+      AWS_DEFAULT_REGION: eu-west-1
+    ports:
+      - "8010:8000"     # laptop port 8010 -> container port 8000 (local uvicorn can keep 8000)

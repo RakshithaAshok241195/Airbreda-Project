@@ -176,16 +176,16 @@ AirBreda is a proof of concept. These are the steps I would take to turn it into
 
 ## The GitHub project
 
-<a class="btn" href="https://github.com/RakshithaAshok241195/Airbreda-Project">View the repository</a>
+<a class="btn" href="https://github.com/RakshithaAshok241195/Airbreda-Project">In repository</a>
 
 | Folder / file | Contains |
 |---------------|----------|
-| `[ingest_air.py](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/ingest_air.py)`, `[ingest_traffic.py](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/ingest_traffic.py)` | The two ingestion services |
-| `[build_training_data.py](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/build_training_data.py)`, `[train_model.py](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/train_model.py)`, `[predict.py](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/predict.py)` | Training data, model and prediction |
-| `[dashboard.py](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/dashboard.py)` | The FastAPI dashboard and API |
-| `[Dockerfile](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/Dockerfile)`, `[Dockerfile.traffic](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/Dockerfile.traffic)`, `[Dockerfile.dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docker-compose.day4.yml)` | The three container |
-| `[tests/](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/tests)` | 86 pytest tested |
-| `[docs/](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/doc)` | Architecture Design Document |
+| [`ingest_air.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/ingest_air.py), [`ingest_traffic.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/ingest_traffic.py) | The two ingestion services |
+| [`build_training_data.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/build_training_data.py), [`train_model.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/train_model.py), [`predict.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/predict.py) | Training data, model and prediction |
+| [`dashboard.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/dashboard.py) | The FastAPI dashboard and API |
+| [`Dockerfile`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/Dockerfile), [`Dockerfile.traffic`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/Dockerfile.traffic), [`Dockerfile.dashboard`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/Dockerfile.dashboard) | The three container images |
+| [`tests/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/tests) | 86 automated tests |
+| [`docs/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/docs) | The Architecture Design Document and this page |
 
 
 

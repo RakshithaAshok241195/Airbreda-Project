@@ -1,0 +1,47 @@
+# AirBreda - Day 2: two ingestion services + Redis as the shared message broker.
+# Based on the course's compose file. Additions, each for a reason:
+#   restart: unless-stopped  -> a crashed service comes back by itself (ADR-003)
+#   ports (127.0.0.1 only)   -> /health reachable from this laptop, not from the network
+#   environment              -> health ports, polling intervals, AWS keys passed through
+#                               from the terminal (never written to a file)
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    networks: [airbreda]
+    restart: unless-stopped
+
+  air-ingest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: air-ingest
+    env_file: .env
+    environment:
+      HEALTH_PORT: "8001"
+      AIR_POLL_SECONDS: "3600"
+    ports:
+      - "127.0.0.1:8001:8001"
+    depends_on: [redis]
+    networks: [airbreda]
+    restart: unless-stopped
+
+  traffic-ingest:
+    build:
+      context: .
+      dockerfile: Dockerfile.traffic
+    container_name: traffic-ingest
+    env_file: .env
+    environment:
+      HEALTH_PORT: "8002"
+      TRAFFIC_POLL_SECONDS: "3600"
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    ports:
+      - "127.0.0.1:8002:8002"
+    depends_on: [redis]
+    networks: [airbreda]
+    restart: unless-stopped
+
+networks:
+  airbreda:

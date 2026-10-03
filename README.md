@@ -91,10 +91,11 @@ Four simple linear models were trained on the 6 hours where both sources overlap
 ---
 
 ## Live system
+[live dashboard ](http://18.203.87.168:8000/)
 
 ## Live system
 
-"http://18.203.87.168:8000"> the live dashboard</a>
+
 
 Every required endpoint, served by the FastAPI app on the EC2 VM. Each link opens the live response.
 
@@ -168,9 +169,6 @@ AirBreda is a proof of concept. These are the steps I would take to turn it into
 - Build the Warm Standby in a second AWS region, so a regional outage costs at most about one hour of traffic data
 - At around 50 corridors, move ingestion to scheduled managed containers (ECS on Fargate) and run the dashboard on two instances behind a load balancer
 - Also store the original NDW XML files, so past hours can be re-processed if a parsing bug is ever found
-
-**6. Code structure**
-- Reorganise the code into `ingestion/`, `ml/` and `app/` packages, retraining the model so it matches the new structure
 
 ---
 

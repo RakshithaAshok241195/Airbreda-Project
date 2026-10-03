@@ -37,8 +37,8 @@ AirBreda is a proof of concept I built for the *System Design & Cloud Platforms*
 
 > **Does traffic congestion at the A27 interchange near Breda cause nearby NO₂ exceedances?**
 
-- **RIVM Luchtmeetnet** — hourly NO₂ at station NL10240 (Breda-Tilburgseweg)
-- **NDW** — vehicles per hour and speed, per lane, at four A27 sites: both mainline directions and both slip roads
+- **RIVM Luchtmeetnet** hourly NO₂ at station NL10240 (Breda-Tilburgseweg)
+- **NDW** vehicles per hour and speed, per lane, at four A27 sites: both mainline directions and both slip roads
 
 The two sources behave in opposite ways: if an hour is missed, Luchtmeetnet gives it back on the next request, but NDW traffic is lost for good. That difference shaped most of the design.
 

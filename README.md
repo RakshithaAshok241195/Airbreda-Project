@@ -115,21 +115,17 @@ Also available: [`/history`](http://18.203.87.168:8000/history) (the last 24 hou
 
 ## Results & evidence
 
-**AWS deployment - the VM running the containers**
-
-![Connection to the VM](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/connection_to_VM.png)
+**AWS deployment: the VM running the containers**
+[connection to the VM](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/connection_to_VM.png)
 
 **The pipeline running**
+[the pipeline](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/pipeline_connection.png)
 
-![Pipeline]([pipeline_connection.png](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/pipeline_connection.png))
-
-**Docker the same image on my laptop**
-
-![Docker dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/docker_dashboard_connection.png)
+**Docker: the same image on my laptop**
+[the Docker dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/docker_dashboard_connection.png)
 
 **Tests and the live dashboard**
-
-![Tests and dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/pytests_and_dashboard.png)
+[tests and dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/pytests_and_dashboard.png)
 
 ---
 

@@ -1,9 +1,9 @@
 # Airbreda-Project
 This repository contains the development and documentation of AirBreda, an AWS-based cloud data platform. It includes live RIVM and NDW data ingestion, PostgreSQL and S3 storage, machine learning experiments, a FastAPI dashboard, automated tests, and the architectural decisions behind the system.
 
-<a class="btn" href="http://18.203.87.168:8000">Live dashboard</a>
-<a class="btn" href="https://github.com/RakshithaAshok241195/Airbreda-Project">GitHub repository</a>
-<a class="btn" href="Architecture_Design_doc.md">Architecture Design Document</a>
+<a class="btn" href="http://18.203.87.168:8000">Live dashboard</a>  
+<a class="btn" href="https://github.com/RakshithaAshok241195/Airbreda-Project">GitHub repository</a>  
+<a class="btn" href="">[Architecture Design Document](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/Architecture_Design_doc.md)</a>  
 
 [Overview](#overview)  
 [Research question](#research-question)  

@@ -64,7 +64,7 @@ flowchart LR
 - **RDS PostgreSQL** stores the readings; **S3** keeps the raw traffic files
 - An **IAM role** gives the VM access to S3 without stored keys
 
-**Key design decisions:** writes that can safely be repeated; the database written before anything else; the simplest compute that fits; the exact Docker image tested locally is the one deployed. The reasoning is in the [Architecture Design Document](Architecture_Design_doc.md).
+**Key design decisions:** writes that can safely be repeated; the database written before anything else; the simplest compute that fits; the exact Docker image tested locally is the one deployed. The reasoning is in the [Architecture_Design_doc.md](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/Architecture_Design_doc.md).
 
 ---
 

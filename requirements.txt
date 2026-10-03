@@ -1,0 +1,7 @@
+requests
+pandas
+psycopg2-binary
+python-dotenv
+pytest
+boto3
+redis

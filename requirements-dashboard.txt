@@ -1,0 +1,18 @@
+# Dashboard image (Dockerfile.dashboard). Day 4.
+#
+# The model libraries are PINNED to the exact versions model.pkl was trained with
+# (see model_card.json -> "versions"). A pickled model loaded by a different
+# scikit-learn / numpy may warn, fail, or behave differently: training-serving
+# skew caused by a library, not by the data (ADR-006). When you retrain with
+# newer versions, update these pins from the new model_card.json.
+scikit-learn==1.9.1
+numpy==2.5.3
+pandas==3.0.6
+joblib==1.6.0
+
+# Web + cloud access
+fastapi
+uvicorn
+boto3
+psycopg2-binary
+python-dotenv

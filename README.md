@@ -3,7 +3,7 @@ This repository contains the development and documentation of AirBreda, an AWS-b
 
 <a class="btn" href="http://18.203.87.168:8000">Live dashboard</a>  
 <a class="btn" href="https://github.com/RakshithaAshok241195/Airbreda-Project">GitHub repository</a>  
-<a class="btn" href="">[Architecture Design Document](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/Architecture_Design_doc.md)</a>  
+<a class="btn" href="">[Architecture Design Document](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/Architecture_Design_doc.md)</a>  
 
 [Overview](#overview)  
 [Research question](#research-question)  
@@ -64,7 +64,7 @@ flowchart LR
 - **RDS PostgreSQL** stores the readings; **S3** keeps the raw traffic files
 - An **IAM role** gives the VM access to S3 without stored keys
 
-**Key design decisions:** writes that can safely be repeated; the database written before anything else; the simplest compute that fits; the exact Docker image tested locally is the one deployed. The reasoning is in the [Architecture_Design_doc.md](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/Architecture_Design_doc.md).
+**Key design decisions:** writes that can safely be repeated; the database written before anything else; the simplest compute that fits; the exact Docker image tested locally is the one deployed. The reasoning is in the [Architecture_Design_doc.md](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/Architecture_Design_doc.md).
 
 ---
 
@@ -117,16 +117,16 @@ Also available: [`/history`](http://18.203.87.168:8000/history) (the last 24 hou
 ## Results & evidence
 
 **AWS deployment: the VM running the containers**
-[connection to the VM](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/connection_to_VM.png)
+[connection to the VM](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/images/connection_to_VM.png)
 
 **The pipeline running**
-[the pipeline](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/pipeline_connection.png)
+[the pipeline](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/images/pipeline_connection.png)
 
 **Docker: the same image on my laptop**
-[the Docker dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/docker_dashboard_connection.png)
+[the Docker dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/images/docker_dashboard_connection.png)
 
 **Tests and the live dashboard**
-[tests and dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/pytests_and_dashboard.png)
+[tests and dashboard](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/images/pytests_and_dashboard.png)
 
 ---
 
@@ -136,7 +136,7 @@ Also available: [`/history`](http://18.203.87.168:8000/history) (the last 24 hou
 - Designing for data that can't be recovered matters more than designing for data that can
 - A model has to be judged on data it hasn't seen, against a simple baseline
 
-**Main decisions** six architecture decision records cover storage, messaging, resilience, compute, deployment and ML serving: see the [Architecture Design Document]([Architecture_Design_doc.md](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/doc/Architecture_Design_doc.md)).
+**Main decisions** six architecture decision records cover storage, messaging, resilience, compute, deployment and ML serving: see the [Architecture Design Document]([Architecture_Design_doc.md](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/docs/Architecture_Design_doc.md)).
 
 **Next steps:** Infrastructure as Code and CI/CD, monitoring with alerts, more data with weather features, and HTTPS.
 
@@ -176,14 +176,29 @@ AirBreda is a proof of concept. These are the steps I would take to turn it into
 
 <a class="btn" href="https://github.com/RakshithaAshok241195/Airbreda-Project">In repository</a>
 
-| Folder / file | Contains |
-|---------------|----------|
-| [`ingest_air.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/ingest_air.py), [`ingest_traffic.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/ingest_traffic.py) | The two ingestion services |
-| [`build_training_data.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/build_training_data.py), [`train_model.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/train_model.py), [`predict.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/predict.py) | Training data, model and prediction |
-| [`dashboard.py`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/dashboard.py) | The FastAPI dashboard and API |
-| [`Dockerfile`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/Dockerfile), [`Dockerfile.traffic`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/Dockerfile.traffic), [`Dockerfile.dashboard`](https://github.com/RakshithaAshok241195/Airbreda-Project/blob/main/Dockerfile.dashboard) | The three container images |
+```
+Airbreda-Project/
+├── src/          all Python code: ingestion, dashboard, model
+├── docker/       the three Dockerfiles (air, traffic, dashboard)
+├── model/        model.pkl + model_card.json (baked into the dashboard image)
+├── data/         training_data.csv
+├── reports/      model comparison and plots
+├── scripts/      one-off database setup and checks
+├── tests/        86 automated tests (pytest)
+└── docs/         Architecture Design Document + screenshots
+```
+
+| Folder | Contains |
+|--------|----------|
+| [`src/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/src) | `ingest_air.py`, `ingest_traffic.py` (the two ingestion services) · `dashboard.py` (FastAPI dashboard + API) · `predict.py`, `features.py` (prediction, shared features) · `build_training_data.py`, `train_model.py` (training) · `airbreda_common.py` (logging, health, database) · `helpers/` (course scripts, reused) |
+| [`docker/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/docker) | `air.Dockerfile`, `traffic.Dockerfile`, `dashboard.Dockerfile` |
+| [`model/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/model) | The trained model and its model card |
+| [`data/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/data) | The joined training data |
+| [`scripts/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/scripts) | `setup_db.py` (creates the table), `db_check.py` |
 | [`tests/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/tests) | 86 automated tests |
-| [`docs/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/docs) | The Architecture Design Document and this page |
+| [`docs/`](https://github.com/RakshithaAshok241195/Airbreda-Project/tree/main/docs) | The Architecture Design Document and screenshots |
+
+Build from the repo root, e.g. `docker build -t airbreda-air -f docker/air.Dockerfile .`
 
 
 

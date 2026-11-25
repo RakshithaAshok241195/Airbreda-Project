@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 
-def main(path="training_data.csv"):
+def main(path="data/training_data.csv"):
     df = pd.read_csv(path)
     print(f"Joined rows: {len(df)}")
     if df.empty:

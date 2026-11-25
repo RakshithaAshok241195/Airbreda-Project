@@ -14,7 +14,7 @@ services:
   air-ingest:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/air.Dockerfile
     container_name: air-ingest
     env_file: .env
     environment:
@@ -29,7 +29,7 @@ services:
   traffic-ingest:
     build:
       context: .
-      dockerfile: Dockerfile.traffic
+      dockerfile: docker/traffic.Dockerfile
     container_name: traffic-ingest
     env_file: .env
     environment:

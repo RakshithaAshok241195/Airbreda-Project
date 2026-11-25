@@ -2,7 +2,9 @@
 .venv/
 .git/
 docs/
-notebook/
 data/
 tests/
+reports/
+scripts/
 __pycache__/
+*.pyc

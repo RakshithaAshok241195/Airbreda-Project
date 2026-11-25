@@ -13,6 +13,7 @@ venv/
 # Local data (the real data lives in RDS and S3)
 data/*
 !data/.gitkeep
+!data/training_data.csv
 
 # OS / editor
 .DS_Store

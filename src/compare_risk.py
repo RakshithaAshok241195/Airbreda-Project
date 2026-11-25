@@ -18,7 +18,7 @@ from sklearn.preprocessing import StandardScaler
 from predict import INPUTS, THRESHOLD_UG_M3, predict
 
 
-def main(path="training_data.csv"):
+def main(path="data/training_data.csv"):
     df = pd.read_csv(path)
     df["exceeded"] = (df["no2_ug_m3"] > THRESHOLD_UG_M3).astype(int)
     n_pos, n = int(df["exceeded"].sum()), len(df)

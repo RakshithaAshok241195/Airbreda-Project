@@ -75,7 +75,7 @@ LOOKBACK_HOURS = int(os.environ.get("TRAFFIC_LOOKBACK_HOURS", "6"))
 HEALTH_WINDOW_HOURS = 24                      # bad_data_count covers the last 24 hours
 CACHE_SECONDS = int(os.environ.get("DASHBOARD_CACHE_SECONDS", "60"))
 STALE_AFTER = {"luchtmeetnet": timedelta(hours=3), "ndw": timedelta(hours=2)}
-MODEL_CARD = Path(__file__).with_name("model_card.json")
+MODEL_CARD = model_api.MODEL_DIR / "model_card.json"   # next to model.pkl (see predict.py)
 
 setup_logging()
 # Keep stdout pure JSON (Day 5: structured logging). boto3 would otherwise print

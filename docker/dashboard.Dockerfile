@@ -1,6 +1,6 @@
 # AirBreda dashboard (Day 4 Lab 2)
 #
-#   docker build -t airbreda-dashboard -f Dockerfile.dashboard .
+#   docker build -t airbreda-dashboard -f docker/dashboard.Dockerfile .
 #   docker run -d --name dashboard --restart unless-stopped --env-file .env -p 8000:8000 airbreda-dashboard
 #
 # Python 3.12 (not the course's 3.11): model.pkl was trained on 3.12, and the
@@ -15,7 +15,9 @@ RUN pip install --no-cache-dir -r requirements-dashboard.txt
 
 # The model is BAKED INTO the image: this container always serves exactly the
 # model it was built with - no separate model server to keep in sync (ADR-006).
-COPY airbreda_common.py features.py predict.py dashboard.py model.pkl model_card.json ./
+COPY src/airbreda_common.py src/features.py src/predict.py src/dashboard.py ./
+COPY model/model.pkl model/model_card.json model/
+ENV MODEL_DIR=/app/model
 
 EXPOSE 8000
 

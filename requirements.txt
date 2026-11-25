@@ -3,5 +3,6 @@ pandas
 psycopg2-binary
 python-dotenv
 pytest
+httpx2   # needed by FastAPI's TestClient in tests/test_dashboard.py
 boto3
 redis

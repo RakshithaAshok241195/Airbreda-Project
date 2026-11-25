@@ -31,7 +31,10 @@ from pathlib import Path
 
 import pandas as pd
 
-MODEL_PATH = Path(os.environ.get("MODEL_PATH", Path(__file__).with_name("model.pkl")))
+# The model lives in the repo's model/ folder; the dashboard image copies it to
+# /app/model and sets MODEL_DIR=/app/model (see docker/dashboard.Dockerfile).
+MODEL_DIR = Path(os.environ.get("MODEL_DIR", Path(__file__).resolve().parent.parent / "model"))
+MODEL_PATH = Path(os.environ.get("MODEL_PATH", MODEL_DIR / "model.pkl"))
 INPUTS = ["total_intensity_veh_per_hr", "hour_of_day"]   # same order the model was trained on
 
 THRESHOLD_UG_M3 = float(os.environ.get("NO2_THRESHOLD", "25"))

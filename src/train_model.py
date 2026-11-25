@@ -106,7 +106,7 @@ def describe(model, name):
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data", default="training_data.csv")
+    parser.add_argument("--data", default="data/training_data.csv")
     parser.add_argument("--candidate", choices=CANDIDATES, help="force one candidate instead of choosing")
     args = parser.parse_args(argv)
 
@@ -162,7 +162,8 @@ def main(argv=None):
                    "in_sample_mae": v["in_sample"]["mae"], "in_sample_r2": v["in_sample"]["r2"],
                    "baseline_mae": baseline, "chosen": k == chosen}
                   for k, v in results.items()]).to_csv("reports/model_comparison.csv", index=False)
-    joblib.dump(model, "model.pkl")
+    Path("model").mkdir(exist_ok=True)
+    joblib.dump(model, "model/model.pkl")
     card = {
         "chosen_candidate": chosen, "description": r["description"],
         "inputs": INPUTS, "target": TARGET,
@@ -182,9 +183,9 @@ def main(argv=None):
                         "traffic and time of day are correlated; effects can't be separated yet",
                         "no weather features (wind, temperature), which strongly drive NO2"],
     }
-    with open("model_card.json", "w", encoding="utf-8") as f:
+    with open("model/model_card.json", "w", encoding="utf-8") as f:
         json.dump(card, f, indent=2, default=float)
-    print("\nSaved model.pkl, model_card.json, reports/model_comparison.csv")
+    print("\nSaved model/model.pkl, model/model_card.json, reports/model_comparison.csv")
     return 0
 
 

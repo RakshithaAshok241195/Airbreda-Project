@@ -154,7 +154,7 @@ def build(no2, traffic):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("--out", default="training_data.csv")
+    parser.add_argument("--out", default="data/training_data.csv")
     parser.add_argument("--bucket", default=os.environ.get("S3_BUCKET"))
     parser.add_argument("--prefix", action="append", dest="prefixes",
                         help="bucket prefix(es) to read, in priority order (default: ndw/ ndw_laptop/)")

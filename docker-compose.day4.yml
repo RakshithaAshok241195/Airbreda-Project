@@ -21,20 +21,20 @@ services:
     profiles: ["ingest"]
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/air.Dockerfile
     env_file: .env
 
   traffic-ingest:
     profiles: ["ingest"]
     build:
       context: .
-      dockerfile: Dockerfile.traffic
+      dockerfile: docker/traffic.Dockerfile
     env_file: .env
 
   dashboard:
     build:
       context: .
-      dockerfile: Dockerfile.dashboard
+      dockerfile: docker/dashboard.Dockerfile
     env_file: .env
     environment:
       # The laptop's AWS session, passed through from the terminal (never written to a file)
